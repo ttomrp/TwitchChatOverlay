@@ -1,0 +1,61 @@
+html, body {
+    margin: 0;
+    font-family: monospace;
+    color: hsl(197, 62%, 32%);
+}
+
+#chat {
+    width: 400px;
+    height: 350px;
+    overflow-y: auto; /*chat autostarts scrolling behavior when it overflows*/
+    display: flex;
+    flex-direction: column-reverse; /*displays chat bottom up*/
+}
+
+/*remove scrollbar*/
+#chat::-webkit-scrollbar {
+    display: none;
+}
+
+/*style for list elements*/
+#chat li {
+    background-color: hsl(196, 58%, 93%);
+    box-sizing: border-box; /*prevents padding and margins from changing with message size*/
+    padding: 1rem 10px;
+    margin-bottom: 10px;
+    border: 4px solid;
+}
+
+/*style for unordered list*/
+#chat ul {
+    list-style-type: none;
+    list-style-position: outside;
+}
+
+/*chat message font*/
+#chat blockquote {
+    font-size: 1.2rem;
+}
+
+/*animation*/
+@keyframes slide-in-left {
+    from {
+        transform: translateX(400px);
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/*change styling of previous message(s)*/
+#chat li:last-of-type {
+    animation-name: slide-in-left;
+    animation-duration: 0.15s;
+    animation-timing-function: ease-in;
+}
+
+/*change styling of most recent message*/
+#chat li:not(:last-of-type) {
+    opacity: 0.5;
+}
